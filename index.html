@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* Book list item styling */
+        li {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            max-width: 800px;
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Large book cover */
+        img.book-cover {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        /* Book details */
+        .book-info {
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 1.8rem;
+            margin: 0;
+            color: #333;
+        }
+
+        .book-author {
+            font-size: 1.2rem;
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .read-status {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .read {
+            color: green;
+        }
+
+        .unread {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Book List</h1>
+    <ul id="book-list"></ul> <!-- List to hold the book items -->
+
+    <script>
+        // Array holding the book details
+        var books = [
+            {
+                title: 'The Modern Day Cleric ',
+                author: 'MUHA>O',
+                alreadyRead: false,
+                cover: './books.jpg' 
+            },
+            {
+                title: 'The Way of Life',
+                author: 'Precious>Pre',
+                alreadyRead: true,
+                cover: './iwe.JPG' 
+            },
+            {
+                title: 'Atomic Bomb',
+                author: 'James Clear',
+                alreadyRead: false,
+                cover: './olu.jpg' 
+            },
+            {
+                title: 'Nitori Owo',
+                author: 'Adebowale.A',
+                alreadyRead: true,
+                cover: './mide.jpg' 
+            }
+        ];
+
+        var bookListElement = document.getElementById('book-list');
+
+       
+        books.forEach(function(book) {
+            // list item to hold book info
+            var listItem = document.createElement('li');
+            
+            //  an image element for the book cover
+            var bookCover = document.createElement('img');
+            bookCover.src = book.cover; 
+            bookCover.alt = book.title + ' cover';
+            bookCover.className = 'book-cover'; 
+
+            // div for book details
+            var bookInfo = document.createElement('div');
+            bookInfo.className = 'book-info';
+
+            // the element for the book title
+            var bookTitle = document.createElement('p');
+            bookTitle.textContent = book.title;
+            bookTitle.className = 'book-title';
+
+            // the element for the book author
+            var bookAuthor = document.createElement('p');
+            bookAuthor.textContent = 'By ' + book.author;
+            bookAuthor.className = 'book-author';
+
+            // the element to show if the book has been read
+            var readStatus = document.createElement('p');
+            readStatus.className = 'read-status';
+            if (book.alreadyRead) {
+                readStatus.textContent = 'Status: Read';
+                readStatus.classList.add('read');
+            } else {
+                readStatus.textContent = 'Status: Not Read';
+                readStatus.classList.add('unread');
+            }
+
+           
+            bookInfo.appendChild(bookTitle);
+            bookInfo.appendChild(bookAuthor);
+            bookInfo.appendChild(readStatus);
+
+            
+            listItem.appendChild(bookCover);
+            listItem.appendChild(bookInfo);
+
+            bookListElement.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
